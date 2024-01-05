@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riwayat Pasien</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #4caf50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Riwayat Pasien</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>No. RM</th>
+                <th>Nama Pasien</th>
+                <th>Tanggal Berkunjung</th>
+                <th>Keluhan</th>
+                <th>Obat</th>
+            </tr>
+        </thead>
+        <tbody id="dataPasienBody"></tbody>
+    </table>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Ambil data dari server
+        fetch('server.php')
+            .then(response => response.json())
+            .then(data => {
+                var dataPasienBody = document.getElementById('dataPasienBody');
+                if (data.length > 0) {
+                    // Tampilkan data pada tabel
+                    data.forEach(pasien => {
+                        var newRow = dataPasienBody.insertRow();
+                        newRow.insertCell(0).textContent = pasien.nomorRM;
+                        newRow.insertCell(1).textContent = pasien.namaPasien;
+                        newRow.insertCell(2).textContent = pasien.tanggalBerkunjung;
+                        newRow.insertCell(3).textContent = pasien.keluhan;
+                        newRow.insertCell(4).textContent = pasien.obat;
+                    });
+                } else {
+                    // Tampilkan pesan jika data tidak tersedia
+                    var newRow = dataPasienBody.insertRow();
+                    var cell = newRow.insertCell(0);
+                    cell.colSpan = 5;
+                    cell.textContent = 'Tidak ada data riwayat pasien.';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Gagal mengambil data riwayat pasien.');
+            });
+    });
+</script>
+
+</body>
+</html>

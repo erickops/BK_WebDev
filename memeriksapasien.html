@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memeriksa Pasien</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <form action="#" method="post" id="obatForm">
+        <label for="nomorRM">Nomor Rekam Medis (RM):</label>
+        <input type="text" id="nomorRM" name="nomorRM" required>
+
+        <label for="namaPasien">Nama Pasien:</label>
+        <input type="text" id="namaPasien" name="namaPasien" required>
+
+        <label for="tanggalBerkunjung">Tanggal Berkunjung:</label>
+        <input type="date" id="tanggalBerkunjung" name="tanggalBerkunjung" required>
+
+        <label for="keluhan">Keluhan:</label>
+        <textarea id="keluhan" name="keluhan" rows="4" required></textarea>
+
+        <label for="obat">Obat yang Dipilih:</label>
+        <select id="obat" name="obat[]" multiple required>
+            <option value="paracetamol" data-harga="5000">Paracetamol</option>
+            <option value="ibuprofen" data-harga="8000">Ibuprofen</option>
+            <option value="aspirin" data-harga="6000">Aspirin</option>
+            <option value="amoxicillin" data-harga="10000">Amoxicillin</option>
+            <!-- Tambahkan opsi obat lainnya sesuai kebutuhan -->
+        </select>
+
+        <input type="submit" value="Submit">
+    </form>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var obatForm = document.getElementById('obatForm');
+
+        obatForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            // Ambil nilai dari formulir obat
+            var nomorRM = document.getElementById('nomorRM').value;
+            var namaPasien = document.getElementById('namaPasien').value;
+            var tanggalBerkunjung = document.getElementById('tanggalBerkunjung').value;
+            var keluhan = document.getElementById('keluhan').value;
+            var obatSelect = document.getElementById('obat');
+            var selectedOptions = Array.from(obatSelect.options).filter(option => option.selected);
+            var obatText = selectedOptions.map(option => option.text).join(', ');
+
+            // Kirim data ke server
+            var formData = new FormData();
+            formData.append('nomorRM', nomorRM);
+            formData.append('namaPasien', namaPasien);
+            formData.append('tanggalBerkunjung', tanggalBerkunjung);
+            formData.append('keluhan', keluhan);
+            formData.append('obat', obatText);
+
+            fetch('server.php', {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Gagal menyimpan data pasien.');
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
