@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Jadwal Dokter Periksa</title>
+    <style>
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper d-flex align-items-stretch">
+        <nav id="sidebar" class="active">
+            <h1><a href="index.html" class="logo">E.</a></h1>
+    <ul class="list-unstyled components mb-5">
+      <li class="active">
+        <a href="index.html"><span class="fa fa-home"></span> Dashboard</a>
+      </li>
+      <li>
+          <a href="jadwaldokter.html"><span class="fa fa-user-md"></span> Jadwal Periksa</a>
+      </li>
+      <li>
+        <a href="create.php"><span class="fa fa-stethoscope"></span> Memeriksa Pasien</a>
+      </li>
+      <li>
+        <a href="index.php"><span class="fa fa-heartbeat"></span> Riwayat Pasien</a>
+      </li>
+      <li>
+        <a href="inputdata.html"><span class="fa fa-street-view"></span> Input Data</a>
+      </li>
+    </ul>
+
+    <div class="footer">
+        <p>
+                  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with ❤ - A11.2020.12611<i class="icon-heart" aria-hidden="true"></i>
+                </p>
+    </div>
+    </nav>
+
+    <!-- Page Content  -->
+  <div id="content" class="p-4 p-md-5">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+
+        <button type="button" id="sidebarCollapse" class="btn btn-primary">
+          <i class="fa fa-bars"></i>
+          <span class="sr-only">Toggle Menu</span>
+        </button>
+        <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fa fa-bars"></i>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="nav navbar-nav ml-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Portfolio</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="logout.php">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <h2>Form Jadwal Dokter Periksa</h2>
+    <form action="#" method="post">
+        <label for="poli">Poli:</label>
+        <select id="poli" name="poli" required>
+            <option value="Gigi">Poli Gigi</option>
+            <option value="Anak">Poli Anak</option>
+            <option value="Umum">Poli Umum</option>
+            <option value="Mata">Poli Mata</option>
+            <option value="Jantung">Poli Jantung</option>
+        </select>
+
+        <label for="tanggal">Tanggal:</label>
+        <input type="date" id="tanggal" name="tanggal" required>
+
+        <label for="ruangan">Ruangan:</label>
+        <select id="ruangan" name="ruangan" required>
+            <option value="H.5.1">H.5.1</option>
+            <option value="H.5.2">H.5.2</option>
+            <option value="H.5.3">H.5.3</option>
+            <option value="H.4.6">H.4.6</option>
+            <option value="H.2.1">H.2.1</option>
+        </select>
+
+        <label for="nama_dokter">Nama Dokter:</label>
+        <select id="nama_dokter" name="nama_dokter" required>
+            <option value="Dr. A">Dr. Ahmad</option>
+            <option value="Dr. B">Dr. Bambang</option>
+            <option value="Dr. C">Dr. Citra</option>
+            <option value="Dr. D">Dr. Dewi</option>
+            <option value="Dr. E">Dr. Evan</option>
+        </select>
+
+        <button type="submit">Submit</button>
+    </form>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
